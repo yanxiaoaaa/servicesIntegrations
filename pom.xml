@@ -13,6 +13,7 @@
         <module>registrationAuthority</module>
         <module>consumer</module>
         <module>configCenter</module>
+        <module>zuul</module>
     </modules>
 
     <parent>
