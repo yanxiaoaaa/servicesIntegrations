@@ -12,6 +12,7 @@
         <module>service</module>
         <module>registrationAuthority</module>
         <module>consumer</module>
+        <module>configCenter</module>
     </modules>
 
     <parent>
