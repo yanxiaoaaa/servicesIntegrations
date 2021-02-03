@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.bupt.mapper.PlatformMapper">
-    <select id="listAllPlatform" resultType="Platform">
+    <select id="listAllPlatform" resultType="cn.bupt.entity.Platform">
         SELECT * FROM platform_information
     </select>
+
+    <select id="query" parameterType="java.lang.String" resultType="cn.bupt.entity.Chat">
+        SELECT * FROM chat WHERE fromId=#{from} AND status=0
+    </select>
+
+    <select id="queryAll" parameterType="java.lang.String" resultType="cn.bupt.entity.Chat">
+        SELECT * FROM chat WHERE fromId=#{from}
+    </select>
+
+    <select id="queryContent" parameterType="cn.bupt.entity.Chat" resultType="cn.bupt.entity.Chat">
+        SELECT * FROM chat WHERE fromId=#{fromId} AND toId=#{toId} AND chatId=#{chatId}
+    </select>
+
+    <insert id="savePlatform" useGeneratedKeys="true" keyProperty="id" parameterType="cn.bupt.entity.Platform">
+        INSERT INTO platform_information(name,url,phone,mail,status) VALUES (#{name},#{url},#{phone},#{mail},#{status})
+    </insert>
+
+    <insert id="saveChat" useGeneratedKeys="true" keyProperty="id" parameterType="cn.bupt.entity.Chat">
+        INSERT INTO chat(fromId,toId,content,chatId,status,chatTime) VALUES (#{fromId},#{toId},#{content},#{chatId},#{status},#{chatTime})
+    </insert>
+
+    <update id="read" parameterType="java.lang.Integer">
+        update chat
+        <set>
+            status=1
+        </set>
+        where id=#{id}
+    </update>
 </mapper>
