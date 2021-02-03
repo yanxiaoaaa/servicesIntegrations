@@ -4,7 +4,6 @@ import cn.bupt.dto.CommonResponseDTO;
 import cn.bupt.entity.Platform;
 import cn.bupt.service.PlatformService;
 import cn.bupt.utils.ResponseCodeEnum;
-import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,10 +36,13 @@ public class PlatformJoinController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public CommonResponseDTO<String> savePlatform(@RequestParam(required = true, value = "name")String name) {
+    public CommonResponseDTO<String> savePlatform(@RequestParam(required = true, value = "name")String name,
+                                                  @RequestParam(required = true, value = "url")String url,
+                                                  @RequestParam(required = true, value = "phone")String phone,
+                                                  @RequestParam(required = true, value = "mail")String mail) {
         CommonResponseDTO<String> responseDTO = new CommonResponseDTO();
         try {
-            responseDTO.setData(platformService.savePlatform());
+            responseDTO.setData(platformService.savePlatform(name,url,phone,mail));
             responseDTO.setMsg(null);
             responseDTO.setCode(ResponseCodeEnum.SUCCESS.getCode());
         } catch (Exception e) {
