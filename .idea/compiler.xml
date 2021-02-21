@@ -8,8 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="zuul" />
-        <module name="service" />
+        <module name="service1" />
+        <module name="platform" />
         <module name="platformService" />
+        <module name="resourcePool" />
+        <module name="service" />
         <module name="configCenter" />
         <module name="consumer" />
         <module name="registrationAuthority" />
@@ -20,9 +23,12 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="configCenter" options="-parameters" />
       <module name="consumer" options="-parameters" />
+      <module name="platform" options="-parameters" />
       <module name="platformService" options="-parameters" />
       <module name="registrationAuthority" options="-parameters" />
+      <module name="resourcePool" options="-parameters" />
       <module name="service" options="-parameters" />
+      <module name="service1" options="-parameters" />
       <module name="zuul" options="-parameters" />
     </option>
   </component>
