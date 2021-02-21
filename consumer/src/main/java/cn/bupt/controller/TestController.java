@@ -40,7 +40,7 @@ public class TestController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
-        ResponseEntity<String> result = restTemplate.postForEntity("http://platform-service/test/platform/post", request, String.class);
+        ResponseEntity<String> result = restTemplate.postForEntity("http://service/test/platform/post", request, String.class);
         return result.getBody();
     }
 
@@ -49,14 +49,14 @@ public class TestController {
         //调用hello-service服务，注意这里用的是服务名，而不是具体的ip+port
         JSONObject postData = new JSONObject();
         postData.put("name", name);
-        ResponseEntity<String> result = restTemplate.postForEntity("http://platform-service/test/platform/post", postData, String.class);
-//        JSONObject result = restTemplate.postForEntity("http://platform-service/test/platform/post", postData, JSONObject.class).getBody();
+        ResponseEntity<String> result = restTemplate.postForEntity("http://service/test/platform/post", postData, String.class);
+//        JSONObject result = restTemplate.postForEntity("http://service/test/platform/post", postData, JSONObject.class).getBody();
         return result.getBody();
     }
 
     @RequestMapping(value = "/platform-consumer/fuse", method = RequestMethod.GET)
     public String testFuse(@RequestParam(required = false, value = "name", defaultValue = "test-service") String name) {
-        String result = restTemplate.getForObject("http://platform-service/test/platform/fuse?name=" + name, String.class);
+        String result = restTemplate.getForObject("http://service/test/platform/fuse?name=" + name, String.class);
         return result;
     }
 }
